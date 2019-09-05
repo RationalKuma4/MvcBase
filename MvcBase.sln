@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcBase.Web", "MvcBase.Web\MvcBase.Web.csproj", "{31C9F21B-E77B-456B-997A-D36DF76AAC47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcBase.Web", "MvcBase.Web\MvcBase.Web.csproj", "{31C9F21B-E77B-456B-997A-D36DF76AAC47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcBase.Models", "MvcBase.Entities\MvcBase.Models.csproj", "{441C80CC-7C47-44D2-8E8A-7AB4A7CDFA7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcBase.Models", "MvcBase.Entities\MvcBase.Models.csproj", "{441C80CC-7C47-44D2-8E8A-7AB4A7CDFA7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcBase.ViewModels", "MvcBase.ViewModels\MvcBase.ViewModels.csproj", "{49EB8CE3-82BF-4807-9910-6BB9407A71A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcBase.ViewModels", "MvcBase.ViewModels\MvcBase.ViewModels.csproj", "{49EB8CE3-82BF-4807-9910-6BB9407A71A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcBase.Logic", "MvcBase.Logic\MvcBase.Logic.csproj", "{46538F0F-C349-40B8-B1AF-5291A66248BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcBase.Logic", "MvcBase.Logic\MvcBase.Logic.csproj", "{46538F0F-C349-40B8-B1AF-5291A66248BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcBase.Data", "MvcBase.Data\MvcBase.Data.csproj", "{8E6A6C56-6A5F-4D31-905F-0EAA6E8316CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcBase.Data", "MvcBase.Data\MvcBase.Data.csproj", "{8E6A6C56-6A5F-4D31-905F-0EAA6E8316CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
