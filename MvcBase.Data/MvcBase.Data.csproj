@@ -13,4 +13,9 @@
     <ProjectReference Include="..\MvcBase.Entities\MvcBase.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Roles\" />
+    <Folder Include="Users\" />
+  </ItemGroup>
+
 </Project>
