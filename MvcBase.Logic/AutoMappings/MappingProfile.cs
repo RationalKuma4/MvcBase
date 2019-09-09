@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using MvcBase.Logic.AutoMappings.Common;
+using Vm = MvcBase.ViewModels;
+using Mo = MvcBase.Models;
 
 namespace MvcBase.Logic.AutoMappings
 {
@@ -7,17 +8,8 @@ namespace MvcBase.Logic.AutoMappings
     {
         public MappingProfile()
         {
-            CreateMappings();
-        }
-
-        private void CreateMappings()
-        {
-            var configurators = new IAutoMapperTypeConfigurator[]
-            {
-                #region Map configurations
-                new ApplicationUserMapperConfigurator()
-                #endregion
-            };
+            CreateMap<Vm.LoginViewModel, Mo.ApplicationUser>();
+            CreateMap<Mo.ApplicationUser, Vm.LoginViewModel>();
         }
     }
 }
