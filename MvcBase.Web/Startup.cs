@@ -39,14 +39,8 @@ namespace MvcBase.Web
             ConfigureContext(services);
             ConfigureIdentity(services);
             ConfigureCookie(services);
-            //ConfigureAutoMapper(services);
 
-            var config = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile<MappingProfile>();
-            });
             services.AddAutoMapper(typeof(Startup), typeof(MappingProfile));
-
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -54,23 +48,6 @@ namespace MvcBase.Web
         private void ConfigureLogic(IServiceCollection services)
         {
             services.AddScoped(typeof(UsersLogic));
-        }
-
-        private void ConfigureAutoMapper(IServiceCollection services)
-        {
-            // Auto Mapper Configurations
-            //services.AddSingleton(typeof(IMapperConfigurationExpression));
-            var mappingConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new MappingProfile());
-            });
-
-#if DEBUG
-            mappingConfig.AssertConfigurationIsValid();
-#endif
-            IMapper mapper = mappingConfig.CreateMapper();
-            services.AddSingleton(mapper);
-            //services.AddAutoMapper(typeof(Startup));
         }
 
         private void ConfigureContext(IServiceCollection services)

@@ -12,6 +12,7 @@ namespace MvcBase.Logic
         {
             _mapper = mapper;
         }
+
         public string MapUsers(Vm.LoginViewModel loginViewModel)
         {
             var mappedresult = _mapper.Map<Mo.ApplicationUser>(loginViewModel);
