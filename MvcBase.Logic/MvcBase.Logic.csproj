@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MvcBase.Data\MvcBase.Data.csproj" />
     <ProjectReference Include="..\MvcBase.Entities\MvcBase.Models.csproj" />
     <ProjectReference Include="..\MvcBase.ViewModels\MvcBase.ViewModels.csproj" />

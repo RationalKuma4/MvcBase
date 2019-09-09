@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Xml.Xsl;
-using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MvcBase.Web.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MvcBase.Data;
+using MvcBase.Logic.AutoMappings;
+using MvcBase.Logic.AutoMappings.Common;
+using MvcBase.Models;
+using System;
 
 namespace MvcBase.Web
 {
@@ -40,34 +38,40 @@ namespace MvcBase.Web
             ConfigureContext(services);
             ConfigureIdentity(services);
             ConfigureCookie(services);
+            ConfigureAutoMapper(services);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
-        private void ConfigureCookie(IServiceCollection services)
+        private void ConfigureAutoMapper(IServiceCollection services)
         {
-            services.ConfigureApplicationCookie(options =>
+            // Auto Mapper Configurations
+            services.AddSingleton<IAutoMapper, AutoMapperAdapter>();
+            var mappingConfig = new MapperConfiguration(mc =>
             {
-                options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(50);
-
-                options.LoginPath = "";
-                options.AccessDeniedPath = "";
+                mc.AddProfile(new MappingProfile());
             });
+
+#if DEBUG
+            mappingConfig.AssertConfigurationIsValid();
+#endif
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
         }
 
         private void ConfigureContext(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("TestConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDbContext<MvcBaseDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("TestConnection")));
         }
 
         private void ConfigureIdentity(IServiceCollection services)
         {
+            services.AddIdentity<ApplicationUser, Role>()
+                .AddDefaultUI(UIFramework.Bootstrap4)
+                .AddEntityFrameworkStores<MvcBaseDbContext>()
+                .AddDefaultTokenProviders();
+
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings.
@@ -81,6 +85,18 @@ namespace MvcBase.Web
                 options.User.AllowedUserNameCharacters =
                     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = true;
+            });
+        }
+
+        private void ConfigureCookie(IServiceCollection services)
+        {
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(50);
+
+                options.LoginPath = "";
+                options.AccessDeniedPath = "";
             });
         }
 

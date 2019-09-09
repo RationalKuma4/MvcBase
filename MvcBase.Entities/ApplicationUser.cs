@@ -1,15 +1,16 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace MvcBase.Models
 {
-    public class ApplicationUser : IdentityUser
+    public class ApplicationUser : IdentityUser<int>
     {
+        [PersonalData, Required, StringLength(20)]
         public string FirstName { get; set; }
+
+        [PersonalData, Required, StringLength(20)]
         public string LastName { get; set; }
-        public string Street { get; set; }
-        public string City { get; set; }
-        public string Province { get; set; }
-        public string PostalCode { get; set; }
-        public string Country { get; set; }
+
+        public string FullName => $"{FirstName} {LastName}";
     }
 }
