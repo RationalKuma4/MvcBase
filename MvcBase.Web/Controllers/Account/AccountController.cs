@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MvcBase.Logic;
 using MvcBase.ViewModels;
-using MvcBase.ViewModels.Roles;
-using MvcBase.ViewModels.Users;
 
 namespace MvcBase.Web.Controllers.Account
 {
